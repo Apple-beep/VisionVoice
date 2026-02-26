@@ -39,43 +39,49 @@ The app offers three analysis modes, spatial audio positioning for detected obje
 
 VisionVoice follows a modular pipeline architecture with clear separation of concerns:
 
+```text
 ┌─────────────────────────────────────────────────────────┐
-│ ContentView (UI) │
-│ Mode Selector │ Camera Display │ Status Card │ TTS │
+│                     ContentView (UI)                    │
+│   Mode Selector │ Camera Display │ Status Card │ TTS    │
 └────────────────────────┬────────────────────────────────┘
-│ 
-┌──────────▼──────────┐
-│ CameraPipeline │ ← Orchestrates all subsystems
-└──┬──────────────┬───┘
-│ │
-┌────────────▼──┐ ┌─────▼───────────┐
-│ CameraModel │ │ VisionRecognizer │
-│ AVCapture │ │ Vision + OCR │
-│ Session Mgmt │ │ On-Device │
-└───────────────┘ └────────┬─────────┘
-│
-┌──────────▼──────────┐
-│ SoundscapeEngine │
-│ AVAudioEngine + │
-│ 3D Spatial Audio │
-└─────────────────────┘
+                         │
+              ┌──────────▼──────────┐
+              │   CameraPipeline    │  ← Orchestrates all subsystems
+              └──┬──────────────┬───┘
+                 │              │
+    ┌────────────▼──┐     ┌─────▼───────────┐
+    │  CameraModel  │     │ VisionRecognizer │
+    │  AVCapture    │     │  Vision + OCR    │
+    │  Session Mgmt │     │  On-Device       │
+    └───────────────┘     └────────┬─────────┘
+                                   │
+                        ┌──────────▼──────────┐
+                        │  SoundscapeEngine   │
+                        │  AVAudioEngine +    │
+                        │  3D Spatial Audio   │
+                        └─────────────────────┘
+```
+
 ## 📂 File Structure
 
+```text
 VisionVoice/
-├── MyApp.swift # App entry point (@main)
-├── ContentView.swift # Root SwiftUI view, mode switching, TTS orchestration
-├── CameraModel.swift # AVCaptureSession management, pixel buffer streaming
-├── CameraPipeline.swift # Connects CameraModel → VisionRecognizer → SoundscapeEngine
-├── CameraPreview.swift # UIViewRepresentable for live camera preview layer
-├── Visionrecognizer.swift # Vision inference: scene description, OCR, object detection
-├── SoundscapeEngine.swift # AVAudioEngine + 3D spatial tones per detected entity
-├── Models.swift # Shared data models: AppMode, DetectedThing, VisionResult
-├── infoview.swift # In-app help/about sheet
-├── MoreInfo.plist # App metadata / info plist
-├── Package.swift # Swift Package Manager manifest (iOS 16+, Swift 6)
-├── Contents.json # Asset catalog metadata
-├── AppIcon.png # Application icon
-└── demo.jpeg # Sample image used in Demo Mode
+├── MyApp.swift              # App entry point (@main)
+├── ContentView.swift        # Root SwiftUI view, mode switching, TTS orchestration
+├── CameraModel.swift        # AVCaptureSession management, pixel buffer streaming
+├── CameraPipeline.swift     # Connects CameraModel → VisionRecognizer → SoundscapeEngine
+├── CameraPreview.swift      # UIViewRepresentable for live camera preview layer
+├── Visionrecognizer.swift   # Vision inference: scene description, OCR, object detection
+├── SoundscapeEngine.swift   # AVAudioEngine + 3D spatial tones per detected entity
+├── Models.swift             # Shared data models: AppMode, DetectedThing, VisionResult
+├── infoview.swift           # In-app help/about sheet
+├── MoreInfo.plist           # App metadata / info plist
+├── Package.swift            # Swift Package Manager manifest (iOS 16+, Swift 6)
+├── Contents.json            # Asset catalog metadata
+├── AppIcon.png              # Application icon
+└── demo.jpeg                # Sample image used in Demo Mode
+```
+
 
 ## 🧠 How It Works
 
@@ -230,4 +236,4 @@ Musharaf Khan Pathan
 Illinois Institute of Technology, Chicago
 GitHub: @Apple-beep
 
-<p align="center"> <em>Built with ❤️ for the visually impaired community — because everyone deserves to experience the world.</em> </p> ```
+<p align="center"> <em>Built with ❤️ for the visually impaired community — because everyone deserves to experience the world.</em> </p> 
