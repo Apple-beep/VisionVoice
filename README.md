@@ -43,7 +43,7 @@ VisionVoice follows a modular pipeline architecture with clear separation of con
 │ ContentView (UI) │
 │ Mode Selector │ Camera Display │ Status Card │ TTS │
 └────────────────────────┬────────────────────────────────┘
-│
+│ 
 ┌──────────▼──────────┐
 │ CameraPipeline │ ← Orchestrates all subsystems
 └──┬──────────────┬───┘
@@ -76,10 +76,6 @@ VisionVoice/
 ├── Contents.json # Asset catalog metadata
 ├── AppIcon.png # Application icon
 └── demo.jpeg # Sample image used in Demo Mode
-
-text
-
----
 
 ## 🧠 How It Works
 
@@ -153,6 +149,7 @@ Build & Run (⌘R).
 Grant camera permission on first launch.
 
 Note: Demo Mode works on the simulator — live camera requires a physical device.
+```
 
 🎮 Usage
 Launch the app — A welcome message is spoken automatically.
